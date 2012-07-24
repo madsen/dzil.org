@@ -1,0 +1,31 @@
+=author CJM
+
+=plugin FileFinder::ByName
+core file-finder
+
+This selects files by matching their pathnames.
+
+
+=plugin FileFinder::Filter
+core file-finder
+
+This takes the results from another FileFinder and filters out
+unwanted files by matching their pathnames.
+
+
+=plugin TestRelease
+core tests before-release
+
+This plugin extracts the tarball that's about to be released and
+ensures that it passes its tests.  If any tests fail it aborts the
+release.  B<You should be using this plugin.> (It's included in
+L<@Basic|Dist::Zilla::PluginBundle::Basic>.)
+
+
+=plugin VersionFromModule
+version version-provider
+
+This extracts the version number from the main module, just like
+L<MakeMaker|ExtUtils::MakeMaker> does with C<VERSION_FROM> or
+L<Module::Build> does with C<dist_version_from>.  Useful if you want to
+manually manage your distribution's version.

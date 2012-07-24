@@ -1,0 +1,12 @@
+=author XENO
+
+=plugin OurPkgVersion
+file-munger version version-insert
+
+Insert a version number wherever a special comment is found:
+
+    # VERSION
+
+becomes
+
+    our $VERSION = '1.234'; # VERSION

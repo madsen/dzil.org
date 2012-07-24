@@ -6,3 +6,4 @@ use autodie ':all';
 mkdir 'out' unless -d 'out';
 system('cp src/*.html src/*.css out');
 system('./src/tutorial/build-tutorial.pod src/tutorial out/tutorial/');
+system('./src/plugins/build-plugins.pl src/plugins out/plugins/');

@@ -1,0 +1,10 @@
+=author JQUELIN
+
+=plugin AutoPrereqs
+core prereq-source
+
+This plugin will attempt to determine your distribution's
+prerequisites automatically by scanning your files using
+L<Perl::PrereqScanner>.
+
+

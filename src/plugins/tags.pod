@@ -1,0 +1,105 @@
+=tag after-release
+
+L<AfterRelease|Dist::Zilla::Role::AfterRelease> plugins run only when
+you run S<C<dzil release>>.  They perform housekeeping tasks after the
+release has been made.
+
+=tag before-release
+
+L<BeforeRelease|Dist::Zilla::Role::BeforeRelease> plugins run only
+when you run S<C<dzil release>>.  They confirm that the distribution
+is in a proper state to release.
+
+=tag changelog
+
+These plugins involve your F<Changes> file.
+
+=tag core
+
+These plugins are included with the core
+L<Dist::Zilla|https://metacpan.org/release/Dist-Zilla> distribution.
+
+=tag documentation
+
+These plugins deal with the documentation for your distribution.
+
+=tag file-finder
+
+L<FileFinder|Dist::Zilla::Role::FileFinder> plugins select files to be
+processed by some other plugin.
+
+=tag file-gatherer
+
+L<FileGatherer|Dist::Zilla::Role::FileGatherer> plugins add files to
+the distribution, either by loading them from disk or by generating
+them from scratch.
+
+=tag file-munger
+
+L<FileMunger|Dist::Zilla::Role::FileMunger> plugins take a file
+(usually one loaded from disk) and edit it during the build process.
+
+=tag file-pruner
+
+L<FilePruner|Dist::Zilla::Role::FilePruner> plugins remove files from
+the distribution.
+
+=tag for-subclassing
+
+These plugins exist primarily to be subclassed.
+
+=tag install
+
+These plugins affect how your distribution is installed.
+
+=tag metadata
+
+These plugins deal with your distribution's metadata.
+
+=tag minting
+
+These plugins are used when you create a new distribution with S<C<dzil new>>.
+
+=tag prereq-source
+
+L<PrereqSource|Dist::Zilla::Role::PrereqSource> plugins specify the
+prerequisites of your distribution.
+
+=tag releaser
+
+L<Releaser|Dist::Zilla::Role::Releaser> plugins run only when you run
+S<C<dzil release>>.  Normally, they take the generated tarball and
+deliver it where it needs to go (e.g. upload it to CPAN).
+
+=tag scripts
+
+These plugins involve scripts bundled with your distribution.
+
+=tag template
+
+These plugins perform template processing, usually with L<Text::Template>.
+
+=tag tests
+
+These plugins involve tests for your distribution.
+
+=tag tests-extra
+
+These plugins involve tests that are normally run only by the author,
+and not during installation.
+
+=tag version
+
+These plugins deal with version numbers in some fashion.
+
+=tag version-insert
+
+These plugins insert the distribution's version number into your
+modules in some way.
+
+=tag version-provider
+
+L<VersionProvider|Dist::Zilla::Role::VersionProvider> plugins decide
+what version number the distribution being built will use.  It is
+possible to use multiple VersionProvider plugins, but only one can
+return a version during any given build.

@@ -1,0 +1,8 @@
+=author ROKR
+
+=plugin SurgicalPkgVersion
+version file-munger version version-insert
+
+This subclass of L<PkgVersion|Dist::Zilla::Plugin::PkgVersion> ignores
+files unless they have an abstract or a comment indicating that
+PkgVersion should process them.
