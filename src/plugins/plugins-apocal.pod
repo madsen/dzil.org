@@ -1,0 +1,8 @@
+=author APOCAL
+
+=plugin Authority
+file-munger metadata
+
+Insert an C<$AUTHORITY> variable into each package and an
+C<x_authority> key into your metadata that lists your (or the primary
+author's) CPAN ID.

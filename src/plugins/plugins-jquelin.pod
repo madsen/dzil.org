@@ -8,6 +8,14 @@ prerequisites automatically by scanning your files using
 L<Perl::PrereqScanner>.
 
 
+=plugin CheckChangesHasContent
+before-release changelog
+
+This plugin ensures that your Changes file actually has some content
+since the last release.  If it doesn't find any, it will abort the
+release process.
+
+
 =plugin Git::Check
 before-release git version-control
 
@@ -18,7 +26,7 @@ release process).
 
 
 =plugin Git::Commit
-after-release git version-control
+after-release changelog git version-control
 
 Once the release is done, this plugin will record this fact in Git by
 committing the changelog and F<dist.ini>.

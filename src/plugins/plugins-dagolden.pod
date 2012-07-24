@@ -1,0 +1,22 @@
+=author DAGOLDEN
+
+=plugin CheckExtraTests
+before-release tests tests-extra
+
+This plugin ensures that the tests in the F<xt/> directory pass before
+allowing a release.  It is a complement to the C<xtest> command and an
+alternative to the L<ExtraTests|Dist::Zilla::Plugin::ExtraTests> and
+L<RunExtraTests|Dist::Zilla::Plugin::RunExtraTests> plugins.  (You
+should probably use RunExtraTests instead.)
+
+
+=plugin RunExtraTests
+tests tests-extra
+
+This plugin runs the tests in the F<xt/> directory when you do
+S<C<dzil test>> or use the
+L<TestRelease|Dist::Zilla::Plugin::TestRelease> plugin.  It's more
+efficient than L<CheckExtraTests|Dist::Zilla::Plugin::CheckExtraTests>
+because it integrates more tightly with MakeMaker (and ModuleBuild),
+allowing dzil to build the dist once and then run both the normal
+tests and the extra tests.

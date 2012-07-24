@@ -1,0 +1,7 @@
+=author MARCEL
+
+=plugin Bugtracker
+metadata
+
+This plugin sets the distribution's bugtracker URL and possibly the email
+address as metadata.
