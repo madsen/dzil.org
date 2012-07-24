@@ -1,0 +1,27 @@
+This is a catalog of Dist::Zilla plugins.  To add a plugin to the
+catalog, add it to the appropriate plugin-author.pod file (creating a
+new one if necessary) and then submit a pull request on GitHub.
+
+Please use one file per author; this should help avoid merge conflicts.
+
+
+Extended POD syntax:
+
+  =author CPANID
+
+      This sets the author for all following plugins
+      (until the next =author, but there should only be 1 per POD file)
+
+  =plugin PluginName
+  tagname tagname...
+
+  Plugin description paragraph.
+
+      This defines a plugin.  Please keep the description short, no
+      more than 1 or 2 brief paragraphs.
+
+  =tag tagname
+
+  Tag description paragraph.
+
+      This defines a tag and gives it a description.
