@@ -1,0 +1,7 @@
+=author FLORA
+
+=plugin EOLTests
+file-gatherer tests tests-extra
+
+This adds F<xt/release/eol.t> to your distribution, which is a
+standard L<Test::EOL> test.

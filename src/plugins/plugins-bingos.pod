@@ -1,0 +1,8 @@
+=author BINGOS
+
+=plugin GithubMeta
+metadata git version-control
+
+This plugin sets your distribution's C<resources> metadata based on
+your Git remote specification to L<GitHub|https://github.com>.  It
+does not perform any network access.

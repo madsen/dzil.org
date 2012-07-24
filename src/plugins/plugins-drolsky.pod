@@ -1,0 +1,7 @@
+=author DROLSKY
+
+=plugin Conflicts
+install metadata prereqs
+
+This plugin lets you declare conflicts with other modules (usually
+dependencies of your module) in your F<dist.ini>.
