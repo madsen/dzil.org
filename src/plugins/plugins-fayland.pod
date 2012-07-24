@@ -1,0 +1,7 @@
+=author FAYLAND
+
+=plugin Repository
+metadata git version-control
+
+This plugin attempts to determine your repository URL automatically
+from your svn/svk/Git working dir.

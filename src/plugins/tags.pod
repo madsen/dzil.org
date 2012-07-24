@@ -48,9 +48,18 @@ the distribution.
 
 These plugins exist primarily to be subclassed.
 
+=tag git
+
+These plugins interact with L<Git|http://git-scm.com/>.
+
 =tag install
 
 These plugins affect how your distribution is installed.
+
+=tag manifest
+
+These plugins deal with the F<MANIFEST> (or F<MANIFEST.SKIP>) file in
+your distribution.
 
 =tag metadata
 
@@ -60,10 +69,11 @@ These plugins deal with your distribution's metadata.
 
 These plugins are used when you create a new distribution with S<C<dzil new>>.
 
-=tag prereq-source
+=tag prereqs
 
-L<PrereqSource|Dist::Zilla::Role::PrereqSource> plugins specify the
-prerequisites of your distribution.
+These plugins deal with your distribution's prerequisites.  Most of
+them are L<PrereqSource|Dist::Zilla::Role::PrereqSource> plugins,
+which specify the prerequisites.
 
 =tag releaser
 
@@ -91,6 +101,12 @@ and not during installation.
 =tag version
 
 These plugins deal with version numbers in some fashion.
+
+=tag version-control
+
+These plugins interact with version control systems like
+L<Git|http://git-scm.com/> or
+L<Subversion|http://subversion.apache.org/>.
 
 =tag version-insert
 

@@ -9,6 +9,17 @@ core
 core
 
 
+=plugin CheckPrereqsIndexed
+before-release prereqs
+
+This plugin will check every required package against the CPAN index
+to ensure that they're all real, installable packages.  If any are
+unknown, it will prompt the user to continue or abort.  This is
+especially useful if you're using
+L<AutoPrereqs|Dist::Zilla::Plugin::AutoPrereqs>, as it can be a little
+overzealous on occasion.
+
+
 =plugin CPANFile
 core file-gatherer metadata
 
@@ -118,7 +129,7 @@ using F<Makefile.PL>.  You wouldn't normally include it directly.
 
 
 =plugin ManifestSkip
-core file-pruner
+core file-pruner manifest
 
 This plugin prunes files using the rules from a F<MANIFEST.SKIP> file
 in the same format that MakeMaker and Module::Build use.
@@ -129,7 +140,7 @@ L<PruneFiles|Dist::Zilla::Plugin::PruneFiles>.
 
 
 =plugin Manifest
-core file-gatherer metadata
+core file-gatherer manifest metadata
 
 This plugin creates a F<MANIFEST> file that lists all the files
 gathered by Dist::Zilla.
@@ -250,7 +261,7 @@ People using L<Pod::Weaver> or L<Pod::Loom> won't need this plugin.
 
 
 =plugin Prereqs
-core prereq-source
+core prereqs
 
 This plugin allows you to declare your distribution's prerequisites in
 your F<dist.ini>.
@@ -286,7 +297,7 @@ more useful or informative in the future.
 
 
 =plugin RemovePrereqs
-core prereq-source
+core prereqs
 
 This will remove any mention of specified modules from your
 distribution's prerequisites.  This is useful for eliminating
