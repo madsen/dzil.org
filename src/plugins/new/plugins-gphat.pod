@@ -1,5 +1,6 @@
 =author GPHAT
 
+
 =plugin ChangelogFromGit::Debian
 changelog git version-control
 
@@ -7,11 +8,17 @@ Dist::Zilla::Plugin::ChangelogFromGit::Debian extends
 L<Dist::Zilla::Plugin::ChangelogFromGit> to create changelogs acceptable
 for Debian packages.
 
+
 =plugin Dpkg
 install
 
 Dist::Zilla::Plugin::Dpkg generates Debian' controls files that you can use
 with debhelper to generate packages of your perl module.
+There are a handful of tools that provide similar functionality. Most of
+them expect your perl module to have a standard installation mechanism.
+This module was born of a need for customization. It's projects used
+per-package perlbrews and all manner of custom bits.
+
 
 =plugin Version::Git::Flowish
 git template version version-control version-provider
@@ -19,3 +26,6 @@ git template version version-control version-provider
 This plugin consumes the Dist::Zilla VersionProvider role and gleans a
 version number from Git using a structure similar to Vincent Driessen's
 L<git flow|http://nvie.com/posts/a-successful-git-branching-model/> model.
+The idea is to facilitate automated systems, such as continuous
+integration, to divine version numbers from the branching and release
+strategies used in our repositories.

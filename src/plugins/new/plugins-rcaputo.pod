@@ -1,5 +1,6 @@
 =author RCAPUTO
 
+
 =plugin ChangelogFromGit
 changelog file-gatherer git version-control
 
@@ -9,3 +10,5 @@ ways. First, it understands release tags, and it uses them to group changes
 by release. Second, it reformats the changes to make them easier to read.
 And third, subclasses can change some or all of the reformatting to make
 change logs even easier to read.
+See this project's CHANGES file for sample output. Yes, this project uses
+itself to generate its own change log. Why not?

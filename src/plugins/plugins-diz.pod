@@ -1,8 +1,12 @@
 =author DIZ
 
+
 =plugin Dpkg::PerlbrewStarman
+install
 
 Dist::Zilla::Plugin::Dpkg::PerlbrewStarman is an extension of
 Dist::Zilla::Plugin::Dpkg. It generates Debian control files that are
 suitable for a perl app that includes it's own Perlbrew and runs under
-Starman. It makes the following assumptions:
+Starman.
+
+=over 4

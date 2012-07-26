@@ -1,7 +1,74 @@
 =author DROLSKY
 
+
 =plugin Conflicts
 install metadata prereqs
 
 This plugin lets you declare conflicts with other modules (usually
 dependencies of your module) in your F<dist.ini>.
+
+
+=plugin @Mercurial
+bundle version-control
+
+This is a plugin bundle to load all git plugins. It is equivalent to:
+
+  [Mercurial::Check]
+  [Mercurial::Tag]
+  [Mercurial::Push]
+
+
+=plugin ConsistentVersionTest
+tests version
+
+This is an extension of L<Dist::Zilla::Plugin::InlineFiles>, providing the
+following file:
+
+   xt/release/consistent-version.t
+
+
+=plugin Mercurial::Check
+before-release version-control
+
+This plugin checks that your working copy is in a clean state before
+releasing. This means that C<hg status> returns no output.
+
+
+=plugin Mercurial::Push
+after-release version-control
+
+Once the release is done, this plugin will push current Mercurial branch.
+
+
+=plugin Mercurial::Tag
+after-release before-release version-control
+
+This plugin acts both before and after a release.
+
+Before the release, it checks to see that a tag matching the release
+version does not already exist. If such a tag already exists, that is a
+fatal error.
+
+
+=plugin ModuleBuild::XSOrPP
+
+Use this plugin instead of the regular C<ModuleBuild> plugin. It generates
+a F<Build.PL> which is smart about building XS. It can accept a C<--pp>
+flag to forcibly disable XS compilation. If no flag is passed, it tests
+whether the installing machine has a working compiler, and disables XS if
+this test fails.
+
+Obviously, this is only useful if your module can work without its XS
+component.
+
+
+=plugin PurePerlTests
+file-gatherer tests
+
+This plugin is for modules which ship with a dual XS/pure Perl
+implementation.
+
+The plugin makes a copy of all your tests when doing release testing (via
+C<dzil test> or C<dzil release>). The copy will set an environment value
+that you specify in a C<BEGIN> block. You can use this to force your code
+to not load the XS implementation.

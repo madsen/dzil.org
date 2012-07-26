@@ -1,5 +1,6 @@
 =author TULSOFT
 
+
 =plugin CheckEmacsChangeLog
 changelog
 
@@ -10,6 +11,10 @@ L<Dist::Zilla::Plugin::CheckChangeLog> by expecting the format of the
 C<ChangeLog> file being the one used by the Emacs's ChangeLog mode. Which
 means, for example, this one:
 
+   2012-03-03  Martin Senger  <martin.senger&#64;gmail.com>
+      * Version 0.0.1 released
+
+
 =plugin Pod2Html
 documentation install
 
@@ -17,3 +22,8 @@ This plugin generates HTML pages from the POD files and puts them into the
 distribution in a separate directory (not as a tree of files but flatten).
 The created HTML pages have the same (or, at least, similar) style as the
 modules' documentation shown at CPAN.
+It creates HTML pages from all files in the C<lib> and C<bin> directory
+that contain a POD section and that have C<.pm> or C<.pl> extension or that
+have the word C<perl> in their first line. The plugin is run after other
+plugins that may munge files and create the POD sections (such as
+I<PodWeaver>).

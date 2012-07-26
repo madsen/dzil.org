@@ -1,7 +1,10 @@
 =author SYP
 
+
 =plugin MojibakeTests
 tests
 
 This is an extension of L<Dist::Zilla::Plugin::InlineFiles>, providing the
 following file:
+
+    xt/release/mojibake.t - a standard Test::Mojibake test

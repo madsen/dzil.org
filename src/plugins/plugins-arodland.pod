@@ -1,6 +1,8 @@
 =author ARODLAND
 
+
 =plugin ModuleBuild::OptionalXS
+install
 
 This module is a L<Dist::Zilla> plugin for building modules that have an XS
 component, but that are able to build and function even if there is no C

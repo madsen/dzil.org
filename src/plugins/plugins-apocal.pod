@@ -1,8 +1,26 @@
 =author APOCAL
 
+
 =plugin Authority
 file-munger metadata
 
 Insert an C<$AUTHORITY> variable into each package and an
 C<x_authority> key into your metadata that lists your (or the primary
 author's) CPAN ID.
+
+
+=plugin DualBuilders
+install prereqs
+
+This plugin allows you to specify ModuleBuild and MakeMaker in your
+L<Dist::Zilla> F<dist.ini> and select only one as your prereq. Normally, if
+this plugin is not loaded you will end up with both in your prereq list and
+this is obviously not what you want! Also, this will block both builders
+from running the testsuite twice.
+
+
+=plugin MinimumPerl
+prereqs
+
+This plugin uses L<Perl::MinimumVersion> to automatically find the minimum
+version of Perl required for your dist and adds it to the prereqs.

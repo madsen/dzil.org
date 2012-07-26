@@ -1,5 +1,6 @@
 =author MITHALDU
 
+
 =plugin ProgCriticTests
 template tests
 
@@ -8,3 +9,5 @@ it's only important to know that by using this plugin you can avoid the
 creep of bad coding practices into your distribution and slowly remove
 those that have made their way in already, without being forced to fix
 everything at once.
+The plugin automatically creates the needed test file and primes it with
+all data it needs to know about your dist as well as the options you give.

@@ -1,5 +1,6 @@
 =author RWSTAUNER
 
+
 =plugin @ConfigSlicer
 bundle
 
@@ -8,12 +9,20 @@ extends L<< C<@Filter>|Dist::Zilla::PluginBundle::Filter >> and
 additionally consumes
 L<Dist::Zilla::Role::PluginBundle::Config::Slicer|Dist::Zilla::Role::Plugin
 Bundle::Config::Slicer> so that any plugin options will be passed in.
+This way you can override the plugin configuration for any bundle that
+doesn't consume
+L<Dist::Zilla::Role::PluginBundle::Config::Slicer|Dist::Zilla::Role::Plugin
+Bundle::Config::Slicer> as if it did!
+
 
 =plugin CPANChangesTests
 tests
 
 This is an extension of L<Dist::Zilla::Plugin::InlineFiles>, providing the
 following files:
+
+  xt/release/cpan-changes.t - a standard Test::CPAN::Changes test
+
 
 =plugin Git::DescribeVersion
 git version version-control version-provider
@@ -22,48 +31,57 @@ This performs the L<Dist::Zilla::Role::VersionProvider> role. It uses
 L<Git::DescribeVersion> to count the number of commits since the last tag
 (matching I<match_pattern>) or since the initial commit, and uses the
 result as the I<version> parameter for your distribution.
+The plugin accepts the same options as L<Git::DescribeVersion/new>. See
+L<Git::DescribeVersion/OPTIONS>.
+
 
 =plugin PodLinkTests
 documentation tests
 
 See L</SYNOPSIS>.
 
-=plugin Run
-
-Run arbitrary commands at various L<Dist::Zilla> phases.
 
 =plugin Run::AfterBuild
 
 This plugin executes the specified command after building the dist.
+
 
 =plugin Run::AfterRelease
 after-release
 
 This plugin executes the specified command after releasing.
 
+
 =plugin Run::BeforeBuild
 
 This plugin executes the specified command before building the dist.
+
 
 =plugin Run::BeforeRelease
 before-release
 
 This plugin executes the specified command before releasing.
 
+
 =plugin Run::Release
 releaser
 
 This plugin executes the specified command for the release process.
+This way you can specify a custom release command without needing any other
+C<Releaser> plugin.
+
 
 =plugin Run::Role::Runner
 
 This is the base role for all the plugins L<Dist::Zilla::Plugin::Run>
 delivers. You don't need this.
 
+
 =plugin Run::Test
 tests
 
 This plugin executes the specified command during the test phase.
+
 
 =plugin Test::Pod::LinkCheck
 documentation tests
@@ -71,8 +89,13 @@ documentation tests
 This is an extension of L<Dist::Zilla::Plugin::InlineFiles> providing the
 following files:
 
+  xt/release/pod-linkcheck.t - a standard Test::Pod::LinkCheck test
+
+
 =plugin Test::Pod::No404s
 documentation tests
 
 This is an extension of L<Dist::Zilla::Plugin::InlineFiles> providing the
 following files:
+
+  xt/release/pod-no404s.t - a standard Test::Pod::No404s test

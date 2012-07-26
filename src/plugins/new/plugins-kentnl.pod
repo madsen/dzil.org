@@ -1,20 +1,27 @@
 =author KENTNL
 
+
 =plugin >dumpphases
 command
 
 Working out what Plugins will execute in which order during which phase can
 be a little confusing sometimes.
+This Command exists primarily to make developing Plugin Bundles and
+debugging dist.ini a bit easier, especially for newbies who may not fully
+understand Bundles yet.
+
 
 =plugin >listdeps_darkpan
 command
 
 List DarkPAN dependencies
 
+
 =plugin AutoVersion::Relative
 template version version-provider
 
 Time-Relative versioning
+
 
 =plugin Bootstrap::lib
 
@@ -23,25 +30,30 @@ directory into @INC at the point of its inclusion, so that you can use
 plug-ins you're writing for L<< C<Dist::Zilla>|Dist::Zilla >>, to release
 the plug-in itself.
 
+
 =plugin Git::Remote::Check
 before-release git version-control
 
 Ensure no pending commits on a remote branch before release
+
 
 =plugin Git::Remote::Check::BeforeBuild
 git version-control
 
 Ensure no pending commits on a remote branch before build
 
+
 =plugin Git::Remote::Update
 before-release git version-control
 
 Update a remote with Git before release.
 
+
 =plugin Git::Remote::Update::BeforeBuild
 git version-control
 
 Update a remote with Git before build.
+
 
 =plugin MetaData::BuiltWith
 metadata
@@ -49,38 +61,59 @@ metadata
 Often, distribution authors get module dependencies wrong. So in such
 cases, its handy to be able to see what version of various packages they
 built with.
+Some would prefer to demand everyone install the same version as they did,
+but that's also not always necessary.
+
 
 =plugin MetaData::BuiltWith::All
+metadata
 
 This further extends the verbosity of the information reported by the L<<
 C<BuiltWith>|Dist::Zilla::Plugin::MetaData::BuiltWith >> plug-in, by
 recursively rooting around in the name-spaces and reporting every version
 of everything it finds.
+Only recommended for the most extreme of situations where you find your
+code breaking all over the show between different versions of things, or
+for personal amusement.
+
 
 =plugin MetaProvides
+metadata
 
 This Distribution Contains a small bundle of plugins for various ways of
 populating the C<META.yml> that is built with your distribution.
+The initial reason for this is due to stuff that uses L<MooseX::Declare>
+style class definitions not being parseable by many tools upstream, so this
+is here to cover this problem by defining it in the metadata.
+
 
 =plugin MetaProvides::Class
+metadata
 
 Scans Dist::Zilla's .pm files and tries to identify classes using
 Class::Discover.
 
+
 =plugin MetaProvides::FromFile
+metadata
 
 In the event nothing else works, pull in hand-crafted metadata from a
 specified file.
 
+
 =plugin MetaProvides::Package
+metadata
 
 Extract namespaces/version from traditional packages for provides
+
 
 =plugin ModuleInstall
 install prereqs template
 
 This module will create a F<Makefile.PL> for installing the dist using
 L<Module::Install>.
+It is at present a very minimal feature set, but it works.
+
 
 =plugin Prereqs::DarkPAN
 

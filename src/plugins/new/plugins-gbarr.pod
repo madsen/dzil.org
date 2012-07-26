@@ -1,6 +1,9 @@
 =author GBARR
 
+
 =plugin Signature
 file-gatherer
 
 This plugin will sign a distribution using Module::Signature.
+This plugin should appear after any other AfterBuild plugin in your
+C<dist.ini> file to ensre that no files are modified after it has been run

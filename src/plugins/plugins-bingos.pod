@@ -1,8 +1,60 @@
 =author BINGOS
 
+
 =plugin GithubMeta
 metadata git version-control
 
 This plugin sets your distribution's C<resources> metadata based on
 your Git remote specification to L<GitHub|https://github.com>.  It
 does not perform any network access.
+
+
+=plugin AssertOS
+file-gatherer install metadata
+
+Dist::Zilla::Plugin::AssertOS is a L<Dist::Zilla> plugin that integrates
+L<Devel::AssertOS> so that CPAN authors may easily stipulate which
+particular OS environments their distributions may be built and installed
+on.
+
+The author specifies which OS or OS families are supported. The necessary
+L<Devel::AssertOS> files are copied to the C<inc/> directory and
+C<Makefile.PL> or C<Build.PL> is mungled to include the necessary
+incantation.
+
+
+=plugin FakeFaker
+install
+
+Dist::Zilla::Plugin::FakeFaker is a L<Dist::Zilla> plugin for those
+situations where one has already got a C<Makefile.PL> file of one's own
+that has been lovingly handcrafted to do funky things and one wishes to
+C<leverage> the power of L<Dist::Zilla>.
+Instead of specifying C<[MakeMaker]> in one's C<dist.ini>, just specify
+C<[FakeFaker]> and your C<Makefile.PL> will be used.
+
+
+=plugin Meta::Dynamic::Config
+metadata
+
+Dist::Zilla::Plugin::Meta::Dynamic::Config is a L<Dist::Zilla> plugin that
+allows an author to specify in the C<META.json> and/or C<META.yml> files
+produced by L<Dist::Zilla> that their distribution performs some dynamic
+configuration as per L<CPAN::Meta::Spec>.
+
+Normally this would not be required, but if you are providing your own
+C<Makefile.PL> or L<Build.PL> and asking questions, sensing the
+environment, etc. to generate a list of prereqs then C<dynamic_config>
+should be set to a true value to satisfy the Meta specification.
+
+
+=plugin NoAutomatedTesting
+install
+
+CPAN Testers are great and do a worthy and thankless job, testing all the
+distributions uploaded to CPAN. But sometimes we don't want a distribution
+to be tested by these gallant individuals.
+
+Dist::Zilla::Plugin::NoAutomatedTesting is a L<Dist::Zilla> plugin that
+mungles C<Makefile.PL> to detect that it is being run by a CPAN Tester and
+C<exit 0> if it is.

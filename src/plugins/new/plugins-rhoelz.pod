@@ -1,14 +1,21 @@
 =author RHOELZ
 
+
 =plugin Git::ExcludeUntracked
 file-pruner git version-control
 
 This L<Dist::Zilla> plugin automatically excludes any files from your
 distribution that are not currently tracked by Git.
 
+=begin deprecated
+
+
 =plugin LocalBrew
 
-DEPRECATED - Use Test::LocalBrew instead
+
+
+=end deprecated
+
 
 =plugin Test::LocalBrew
 file-gatherer template tests

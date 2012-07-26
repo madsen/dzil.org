@@ -1,5 +1,6 @@
 =author CJM
 
+
 =plugin ArchiveRelease
 releaser
 
@@ -104,3 +105,10 @@ This extracts the version number from the main module, just like
 L<MakeMaker|ExtUtils::MakeMaker> does with C<VERSION_FROM> or
 L<Module::Build> does with C<dist_version_from>.  Useful if you want to
 manually manage your distribution's version.
+
+
+=plugin PodLoom
+documentation file-munger
+
+If included, this plugin will process each F<.pm> and F<.pod> file under
+F<lib> or in the root directory through Pod::Loom.

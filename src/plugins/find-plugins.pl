@@ -2,13 +2,14 @@
 
 use sanity;  ### LAZY: Will probably change to use strict/warnings later...
 
-use List::AllUtils qw(uniq firstidx);
+use List::AllUtils qw(min uniq firstidx);
 
 use Pod::Elemental;
 use Pod::Elemental::Transformer::Pod5;
 use Text::Wrap;
 use Pod::Strip;
 
+use POSIX;
 use Path::Class;
 use File::Spec;
 use File::Slurp;
@@ -59,6 +60,7 @@ my @BLACKLIST_DISTRO = (
    'Dist-Zilla-Plugins-CJM',
    'Dist-Zilla-PluginBundle-Apocalyptic',
    'Dist-Zilla-Plugin-ApocalypseTests',
+   'Dist-Zilla-PluginBundle-Rakudo',
    
    # CPAN Testers sez = EPIC FAIL
    'Dist-Zilla-Plugin-JSAN',
@@ -69,6 +71,17 @@ my @BLACKLIST_PLUGIN = (
    # IMPORTANT
    qr/^\=/,
    qr/^\>\w+::/,
+   
+   # Stubs for Foo::* plugins
+   qw(
+      GitHub
+      GitFlow
+      Git
+      Subversion
+      SVK
+      Mercurial
+      Run
+   ),
 );
 
 my @BLACKLIST_CLASS = (
@@ -80,6 +93,8 @@ my @BLACKLIST_CLASS = (
 #############################################################################
 # Some other globals
 
+my $root_dir = Path::Class::dir( File::Spec->curdir() )->parent->parent->subdir('tmp', '.webcache');
+
 my (@EXISTING, @NEW, %PODS);
 my $MCPAN = MetaCPAN::API->new(
    ua => HTTP::Tiny::Mech->new(
@@ -89,7 +104,11 @@ my $MCPAN = MetaCPAN::API->new(
                namespace  => 'MetaCPAN',
                driver     => 'File',
                expires_in => '1d',
-               root_dir   => Path::Class::dir( File::Spec->curdir() )->parent->parent->subdir('tmp', '.webcache')->stringify,
+               root_dir   => $root_dir->stringify,
+               
+               # https://rt.cpan.org/Ticket/Display.html?id=78590
+               on_set_error   => 'die',
+               max_key_length => min( POSIX::PATH_MAX - length( $root_dir->subdir('MetaCPAN', 0, 0)->absolute->stringify ) - 4 - 8, 248),
             )
          )
       )
@@ -119,6 +138,8 @@ my %ROLE2TAG = ( qw(
    VersionProvider    version-provider
 ) );
 
+my $POD5 = 'Pod::Elemental::Element::Pod5';  # shorthand
+
 #############################################################################
 
 die "A 'new' directory already exists!  Clean it up, delete it, and then re-run!" if (-d 'new');
@@ -140,8 +161,15 @@ sub populate_existing {
       my $doc = $PODS{$file} = Pod::Elemental->read_file($file);
       Pod::Elemental::Transformer::Pod5->new->transform_node($doc);
       foreach my $el (@{ $doc->children }) {
-         if ($el->isa('Pod::Elemental::Element::Pod5::Command') && $el->command eq 'plugin') {
+         if ($el->isa($POD5.'::Command') && $el->command eq 'plugin') {
             $el->content =~ /^(\S+)/;
+            push @EXISTING, $1;
+         }
+         elsif (
+            $el->isa($POD5.'::Region') && $el->format_name &&
+            $el->children->[0] && $el->children->[0]->isa($POD5.'::Data')
+         ) {
+            $el->children->[0]->content =~ /^=plugin (\S+)/;
             push @EXISTING, $1;
          }
       }
@@ -169,14 +197,25 @@ sub create_new_pods {
       }
 
       my $children = $PODS{$file}->children;
+      
+      if ($description =~ /deprecated/i) {
+         push @$children, Pod::Elemental::Element::Pod5::Region->new(
+            children    => [ Pod::Elemental::Element::Pod5::Data->new( content => "=plugin $plugin\n$tags\n" ) ],
+            format_name => 'deprecated',
+            content     => '',
+            is_pod      => 0,
+         );
+         next;
+      }
+      
       push @$children,
          Pod::Elemental::Element::Pod5::Command->new(
             command => 'plugin',
             content => "$plugin\n$tags",
          ),
-         Pod::Elemental::Element::Pod5::Ordinary->new(
-            content => wrap('','',$description),
-         )
+         map { Pod::Elemental::Element::Pod5::Ordinary->new(
+            content => wrap('','',$_),
+         ) } (split /\n\n/, $description)
       ;
    }
 
@@ -186,8 +225,9 @@ sub create_new_pods {
       my $pod = $PODS{$file};
       my $content = $pod->as_pod_string;
       $content =~ s/^=pod\s*|\s*=cut\s*$//g;
+      $content =~ s/^=plugin/\n=plugin/gm;  # P:E:D tends to remove multiple blank lines
 
-      File::Slurp::write_file($filepath, $content);
+      File::Slurp::write_file($filepath, $content."\n");
       print "done\n";
    }
 }
@@ -277,15 +317,27 @@ sub find_moar_modules {
       my $description = '';
       foreach my $section (qw{DESCRIPTION ABSTRACT NAME}) {
          $di = firstidx {
-            $_->isa('Pod::Elemental::Element::Pod5::Command') &&
+            $_->isa($POD5.'::Command') &&
             $_->command eq 'head1' && $_->content eq $section
          } @$dc;
+         next unless ( $dc->[$di+1]->isa($POD5.'::Ordinary') );
          last if ($di > -1);
       }
-      $description = $dc->[$di+1]->content if ($di > -1);
-      $description =~ s/^\Q$class - \E//;
-      $description =~ s/\s+/ /g;
-      $description = ucfirst $description;
+      if ($di > -1) {
+         $description =  $dc->[$di+1]->content;
+         $description =~ s/^\Q$class - \E//;
+         $description =~ s/\s+/ /g;
+         $description =  ucfirst $description;
+
+         if ($description =~ /:\s*$/) {
+            $description .= "\n\n".$dc->[$di+2]->as_pod_string;
+         }
+         elsif ($dc->[$di+2] && $dc->[$di+2]->isa($POD5.'::Ordinary')) {
+            my $content = $dc->[$di+2]->content;
+            $content =~ s/\s+/ /g;
+            $description .= "\n$content";
+         }
+      }
 
       print "done\n";
 
@@ -317,6 +369,7 @@ sub find_moar_modules {
       push @tags, 'changelog'       if ($plugin =~ /Change[lL]og(?:[^a-z]|$)/);
       push @tags, 'documentation'   if ($plugin =~ /Pod(?:[^a-z]|$)/);
       push @tags, 'manifest'        if ($plugin =~ /Manifest(?:[^a-z]|$)/);
+      push @tags, 'metadata'        if ($plugin =~ /Meta(?:[^a-z]|$)/);
       push @tags, 'tests'           if ($plugin =~ /Tests?(?:[^a-z]|$)/);
       push @tags, 'version'         if ($plugin =~ /Version(?:[^a-z]|$)/);
       push @tags, 'version-control' if ($plugin =~ /(Subversion|SV[NK]|CVS|Mercurial)(?:[^a-z]|$)/);

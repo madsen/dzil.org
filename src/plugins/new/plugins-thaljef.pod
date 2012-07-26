@@ -1,5 +1,6 @@
 =author THALJEF
 
+
 =plugin >cook
 command
 
@@ -8,6 +9,11 @@ builds, tests, and installs, your distribution and all of its dependencies
 in a sandbox using L<cpanm> and L<local::lib>. The dependencies are pulled
 from the local L<Pinto> repository in the f<pan> directory, and the
 resulting build is placed in the F<dlib> directory.
+Baking a distribution is equivalent to installing your distribution against
+a virgin Perl with the CPAN toolchain. The resulting F<dlib> will contain
+your distribution and its entire dependency stack. In theory, you could
+then deploy this directory as an isolated application or component.
+
 
 =plugin >scrub
 command
@@ -15,6 +21,10 @@ command
 This L<Dist::Zilla> command "scrubs" your work space to a clean state by
 removing any dependencies that have been installed F<dlib> directory, thus
 forcing the next cooking to be done from scratch.
+You should periodically C<scrub> your work space to remove any dependencies
+that are no longer needed. But you don't need to do it every time you cook,
+or your code/build/test cycles will be unbearably long.
+
 
 =plugin >stock
 command
@@ -26,8 +36,14 @@ into a local CPAN-like repository in the F<pan> directory. As your
 distribution evolves and accumulates more dependencies, you can run the
 C<stock> command again to "stock" the additional ingredients.
 
+
 =plugin Pinto::Add
 releaser
 
 C<Dist::Zilla::Plugin::Pinto::Add> is a release-stage plugin that will add
 your distribution to a local or remote L<Pinto> repository.
+B<IMPORTANT:> You'll need to install L<Pinto>, or L<Pinto::Remote>, or
+both, depending on whether you're going to release to a local or remote
+repository. L<Dist::Zilla::Plugin::Pinto::Add> does not explicitly depend
+on either of these modules, so you can decide which one you want without
+being forced to have a bunch of other modules that you won't use.

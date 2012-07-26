@@ -1,7 +1,9 @@
 =author REID
 
+
 =plugin VersionFromScript
 template version version-provider
 
 This plugin performs the Dist::Zilla::Role::VersionProvider role. It runs a
 user-provided shell script and uses the output as Dist::Zilla's version.
+This module installs a couple of small perl scripts by way of example.

@@ -1,16 +1,26 @@
 =author RTHOMPSON
 
+
 =plugin CheckVersionIncrement
 before-release version
 
 This plugin prevents your from releasing a distribution unless it has a
 version number I<greater> than the latest version already indexed on CPAN.
+Note that this plugin doesn't check whether your release method actually
+involves the CPAN or not. So if you don't use the UploadToCPAN plugin for
+releases, then you probably shouldn't use this one either.
+
 
 =plugin CopyFilesFromBuild
 
 This plugin will automatically copy the files that you specify in dist.ini
 from the build directory into the distribution directoory. This is so you
 can commit them to version control.
+If you want to put a build-generated file in version control but you
+I<don't> want it to I<remain> in the build dir, use C<move> instead of
+C<copy>. When you use C<move>, the F<MANIFEST> file will be updated if it
+exists, and the moved files will be pruned from their former location.
+
 
 =plugin ReadmeAnyFromPod
 documentation file-pruner install
@@ -20,10 +30,13 @@ C<main_module> in any of several formats. The generated README can be
 included in the build or created in the root of your dist for e.g.
 inclusion into version control.
 
+
 =plugin ReadmeMarkdownFromPod
 documentation
 
 Generate a README.mkdn from C<main_module> by L<Pod::Markdown>
+The code is mostly a copy-paste of L<Dist::Zilla::Plugin::ReadmeFromPod>
+
 
 =plugin StaticVersion
 version version-provider
@@ -33,3 +46,4 @@ to specify a specific version number. This allows one to write a
 pluginbundle that decides based on its configuration whether to offer a
 specific version number. You could not otherwise do this, because a static
 version number is specified before any plugins in F<dist.ini>.
+You shouldn't need to use this plugin directly in your F<dist.ini>.

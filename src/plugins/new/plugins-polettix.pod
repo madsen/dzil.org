@@ -1,7 +1,14 @@
 =author POLETTIX
 
+
 =plugin CustomLicense
 
 This plugin allows using L<Software::License::Custom> to get software
 licensing information from a custom file. In other terms, you can specify
 C<Custom> in the license configuration inside L<dist.ini>:
+
+   name     = Foo-Bar
+   abstract = basic Bar for Foo
+   author   = A.U. Thor <author@example.com>
+   license  = Custom
+   copyright_holder = A.U.Thor

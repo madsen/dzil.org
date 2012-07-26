@@ -1,10 +1,14 @@
 =author YANICK
 
+
 =plugin ChangeStats::Git
 file-munger git version-control
 
 Adds a line to the changelog giving some stats about the code churn since
 the last release, which will look like:
+
+  - code churn: 6 files changed, 111 insertions(+), 1 deletions(-)
+
 
 =plugin CoalescePod
 documentation file-munger
@@ -12,12 +16,16 @@ documentation file-munger
 If the files I<Foo.pm> and I<Foo.pod> both exist, the content of the pod
 file is appended at the end of the C<.pm>, and the pod file is removed.
 
+
 =plugin Covenant
 install template
 
 C<Dist::Zilla::Plugin::Covenant> adds the file 'I<AUTHOR_PLEDGE>' to the
 distribution. The author as defined in I<dist.ini> is taken as being the
 pledgee.
+The I<META> file of the distribution is also modified to include a
+I<x_author_pledge> stanza.
+
 
 =plugin HelpWanted
 install
@@ -25,11 +33,14 @@ install
 C<Dist::Zilla::Plugin::HelpWanted> adds an C<x_help_wanted> field in the
 META information of the distribution.
 
+
 =plugin NextVersion::Semantic
 after-release file-munger template version version-provider
 
 Increases the distribution's version according to the semantic versioning
 rules (see L<http://semver.org/>) by inspecting the changelog. 
+More specifically, the plugin performs the following actions:
+
 
 =plugin PreviousVersion::Changelog
 changelog version
@@ -38,10 +49,17 @@ Plugin implementing the L<Dist::Zilla::Role::PreviousVersionProvider> role.
 It provides the previous released version by peeking at the C<Changelog>
 file and returning its latest release, skipping over C<{{$NEXT}}> if its
 there (see L<Dist::Zilla::Plugin::NextRelease>).
+Note that this module uses L<CPAN::Changes> to parse the change log. If the
+file is not well-formed according to its specs, strange things might
+happen.
+
 
 =plugin SchwartzRatio
 after-release
 
 The Schwartz Ratio of CPAN is the number of number of latest releases over
 the total number of releases that CPAN has. For a single distribution, it
-boils down to the less exciting number of previous releases still on CPAN.
+boils down to the less exciting number of previous releases still on CPAN. 
+After a successful release, the plugin displays the releases of the
+distribution still kickign around on CPAN, just to give an idea to the
+author that maybe it's time to do some cleanup.

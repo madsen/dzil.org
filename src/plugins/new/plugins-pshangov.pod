@@ -1,10 +1,12 @@
 =author PSHANGOV
 
+
 =plugin >podpreview
 command
 
 A L<Dist::Zilla> command to preview the munged pod of a module in a browser
 using L<App::PodPreview>.
+
 
 =plugin Inject
 releaser
