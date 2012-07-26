@@ -1,0 +1,13 @@
+=author AYOUNG
+
+
+=plugin Test::Kwalitee
+file-gatherer template tests texts-extra
+
+This provides a standard Test::Kwalitee test.
+
+
+=plugin Test::Legal
+tests
+
+This module will add a L<Test::Legal> test as a release test to your module

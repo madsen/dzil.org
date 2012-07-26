@@ -1,0 +1,47 @@
+=author SWESTRUP
+
+
+=plugin BuildFile
+
+During the 'BeforeBuild' phase of execution, this plugin creates or updates
+one or more files and tests that they now exist. Later, during the
+'AfterBuild' phase of execution the created or updated files are deleted,
+unless the 'precious' configuration option was used.
+Note that this plugin only generates the files on demand. In order to put
+them into the distribution, a FileGatherer such as GatherDir must also be
+run.
+
+
+=plugin FileKeywords
+file-munger
+
+This plugin is a file_munger. It processes a list of files (by default all
+files in the distribution) and replaces all occurances of known keywords
+with their expansions.
+It does this is in a manner similar to how Subversion manages keywords. In
+particular it looks for keywords in the forms:
+
+
+=plugin FileKeywords::Standard
+
+This plugin is a plugin for the FileKeywords file_munger plugin. It defines
+a few keywords that are common to all distributions.
+
+
+=plugin Git::Tag::ForRelease
+after-release git version-control version-provider
+
+This plugin attempts to tag the current repository with an appropriate new
+version number.
+
+
+=plugin ReportPhase
+after-release before-release file-finder file-gatherer file-munger file-pruner install metadata minting prereqs releaser version-provider
+
+This plugin was written to give the author some idea of the order that
+various roles are invoked under different conditions. So, B<ReportPhase>
+implements every major role, and reports when it is being invoked. For best
+results it should be used as both the very first, and the very last plugin
+listed in dist.ini, as it will then report entering and exiting every
+phase.
+Other than this phase reporting, this plugin has no use.

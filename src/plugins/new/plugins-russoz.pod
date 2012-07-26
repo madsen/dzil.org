@@ -1,0 +1,10 @@
+=author RUSSOZ
+
+
+=plugin Test::UseAllModules
+prereqs tests
+
+This is an extension of L<Dist::Zilla::Plugin::InlineFiles>, providing the
+following files:
+
+=over 4

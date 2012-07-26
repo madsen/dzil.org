@@ -1,0 +1,18 @@
+=author MELO
+
+
+=plugin LatestPrereqs
+prereqs
+
+This plugin will filter over all your declared or discovered prerequisites,
+contact CPAN, and adjust the version to the latest one available.
+This will make sure that your module will be installed with the latest
+version available on CPAN at the time you built your package.
+
+
+=plugin MakeMaker::SkipInstall
+
+This small plugin will edit the C<Makefile.PL> file, and override the
+install target to become a no-op.
+This will make your module fail the install phase. It will be built, and
+tested but will never be installed.

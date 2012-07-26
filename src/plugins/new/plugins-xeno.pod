@@ -1,0 +1,61 @@
+=author XENO
+
+
+=plugin OurPkgVersion
+file-munger version version-insert
+
+Insert a version number wherever a special comment is found:
+
+    # VERSION
+
+becomes
+
+    our $VERSION = '1.234'; # VERSION
+
+
+=plugin Catalyst
+
+The following is a list of plugins in this distribution to help you
+integrate L<Catalyst> and L<Dist::Zilla>
+
+
+=plugin Catalyst::New
+
+This plugin is used to generate the same files L<Catalyst::Helper> does
+when C<catalyst.pl App::Name> is run.
+
+=for deprecated =plugin PodSpellingTests
+documentation tests
+
+
+=plugin SubmittingPatches
+template
+
+Add a patch submission policy to your repository similar to that of
+git.git. In the long run I'm hoping to be able to generate slightly
+different policies with this module. Complaints, or suggestions about the
+actual policy are welcome
+
+
+=plugin Test::EOL
+template tests
+
+Generate an author L<Test::EOL>.
+This is an extension of L<Dist::Zilla::Plugin::InlineFiles>, providing the
+following files:
+
+
+=plugin Test::PodSpelling
+documentation template tests
+
+This is an extension of L<Dist::Zilla::Plugin::InlineFiles>, providing the
+following file:
+
+  xt/author/pod-spell.t - a standard Test::Spelling test
+
+
+=plugin Test::Version
+template tests version
+
+This module will add a L<Test::Version> test as a release test to your
+module.

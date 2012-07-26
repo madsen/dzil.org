@@ -1,0 +1,28 @@
+=author ROKR
+
+
+=plugin CopyMakefilePLFromBuild
+after-release version-control
+
+This plugin will automatically copy the F<Makefile.PL> from the build
+directory into the distribution directory so you can commit it to
+version control. When building directly from GitHub (via cpanm, for
+example) you would need a F<Makefile.PL>.
+
+
+=plugin CopyReadmeFromBuild
+after-release version-control
+
+This plugin will automatically copy the F<README> from the build
+directory into the distribution directory so you can commit it to
+version control. GitHub, for example, likes to see a F<README>.  As an
+alternative, you can have a separate file (e.g. F<README.md>) for
+GitHub.
+
+
+=plugin SurgicalPkgVersion
+version file-munger version version-insert
+
+This subclass of L<PkgVersion|Dist::Zilla::Plugin::PkgVersion> ignores
+files unless they have an abstract or a comment indicating that
+PkgVersion should process them.

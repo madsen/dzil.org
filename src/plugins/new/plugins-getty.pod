@@ -1,0 +1,14 @@
+=author GETTY
+
+
+=plugin AutoModuleShareDirs
+
+More information to come, but this module actually automatize the setting
+for defining the sharedirs for module inside your distribution (see
+L<Dist::Zilla::Plugin::ModuleShareDirs>).
+So far there is no default behaviour defined, soon to come.
+
+
+=plugin UploadToDuckPAN
+
+Dist::Zilla plugin to upload to https://duckpan.org/ via https://dukgo.com/

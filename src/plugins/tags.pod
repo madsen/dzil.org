@@ -10,9 +10,17 @@ L<BeforeRelease|Dist::Zilla::Role::BeforeRelease> plugins run only
 when you run S<C<dzil release>>.  They confirm that the distribution
 is in a proper state to release.
 
+=tag bundle
+
+These are plugin bundles.
+
 =tag changelog
 
 These plugins involve your F<Changes> file.
+
+=tag command
+
+These are command modules, which extend the 'dzil' command.
 
 =tag core
 

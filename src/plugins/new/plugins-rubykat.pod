@@ -1,0 +1,11 @@
+=author RUBYKAT
+
+
+=plugin GitFmtChanges
+file-gatherer git version-control
+
+This Dist::Zilla plugin writes a CHANGES file that contains formatted
+commit information from recent git logs. The CHANGES file is formatted
+using the "--format" option of the git log command. This makes it easy to
+make the CHANGES file look the way you want it to.
+This is based on Dist::Zilla::Plugin::ChangelogFromGit.

@@ -1,0 +1,11 @@
+=author LESPEA
+
+
+=plugin SpellingCommonMistakesTests
+tests
+
+This is an extension of Dist::Zilla::Plugin::InlineFiles, providing the
+following file:
+
+    xt/release/common_spelling.t - a standard Pod::Spell::CommonMistakes
+test

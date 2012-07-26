@@ -1,0 +1,38 @@
+=author DUFF
+
+
+=plugin GitObtain
+git version-control
+
+This module uses L<Git::Wrapper> to obtain files from git repositories
+before building a distribution.
+
+Projects downloaded via git would be placed into the current directory by
+default. To specify an alternate location, use the C<--git_dir> option.
+This directory and any intermediate directories in the path will be created
+if they do not already exist.
+
+
+=plugin SvnObtain
+version-control
+
+Uses L<SVN::Client> to obtain files from a subversion repository for
+inclusion in a distribution made with L<Dist::Zilla>.
+
+C<[SvnObtain]> sections in your F<dist.ini> file describe a set of
+Subversion repositories that will be downloaded into the current directory
+prior to building a distribution. Subdirectories will be created that
+correspond to the name of the projects listed in that section. Optionally,
+after the URL of the subversion repository, you may specify a particular
+revision to check out. If you do not specify a revision, C<HEAD> will be
+used.
+
+
+=plugin TemplateFiles
+file-munger template
+
+Utilize L<Text::Template> to turn certain files into templates. Each
+template has available to it the C<$dist> variable that is the instance of
+L<Dist::Zilla> currently running. Only those files listed in C<dist.ini> as
+C<filename = blah> will be considered templates. Filenames are given
+relative to the root of the build.

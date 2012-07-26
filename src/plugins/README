@@ -4,7 +4,6 @@ new one if necessary) and then submit a pull request on GitHub.
 
 Please use one file per author; this should help avoid merge conflicts.
 
-
 Extended POD syntax:
 
   =author CPANID
@@ -25,3 +24,14 @@ Extended POD syntax:
   Tag description paragraph.
 
       This defines a tag and gives it a description.
+
+This directory also includes find-plugins.pl.  It will scan MetaCPAN for
+new plugins and add the descriptions, etc. as new PODs in the new/
+directory.  Any existing POD files will be duplicated and extended in the
+new/ directory.  This allows you to inspect the results and then copy the
+whole directory over.
+
+The script works pretty well in filling in the tags and description, but
+sometimes it needs some edits.  Any edits put back into src/plugins/*.pod
+will be retained unchanged, so don't worry about the script clobbering 
+your changes.

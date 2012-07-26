@@ -1,5 +1,6 @@
 =author DAGOLDEN
 
+
 =plugin CheckExtraTests
 before-release tests tests-extra
 
@@ -20,3 +21,77 @@ efficient than L<CheckExtraTests|Dist::Zilla::Plugin::CheckExtraTests>
 because it integrates more tightly with MakeMaker (and ModuleBuild),
 allowing dzil to build the dist once and then run both the normal
 tests and the extra tests.
+
+
+=plugin >xtest
+command
+
+Run xt tests for your dist
+
+
+=plugin AppendExternalData
+file-munger file-pruner
+
+This L<Dist::Zilla> plugin appends files in a directory to files being
+gathered for the distribution.
+When using this plugin, be thoughtful about the order in which you want
+files to be modified. For example, if you are appending Pod, it makes a big
+difference if you append before or after a plugin like C<<< PodWeaver >>>.
+If you list this plugin first, the Pod will be appended before weaving and
+the added Pod will wind up in the middle of the generated Pod. If this
+plugin is listed last, the Pod will be appended after weaving and will
+follow the generated Pod from C<<< PodWeaver >>>.
+
+=for deprecated =plugin BumpVersionFromGit
+git version version-control version-provider
+
+
+=plugin Doppelgaenger
+after-release file-gatherer file-munger template
+
+This L<Dist::Zilla> plugin creates a new CPAN distribution with a new name
+based on the latest stable distribution of a source module.
+Please do not do this without the permission of the authors or maintainers
+of the source.
+
+
+=plugin InsertCopyright
+file-munger
+
+This module replaces a special C<# COPYRIGHT> comment in your Perl source
+files with a short notice appropriate to your declared copyright. The
+special comment B<must> be placed before C<__END__>. Only the first such
+comment will be replaced.
+It is inspired by excellent L<Dist::Zilla::Plugin::Prepender> but gives
+control of the copyright notice placement instead of always adding it at
+the start of a file.
+
+
+=plugin OSPrereqs
+install metadata
+
+This L<Dist::Zilla> plugin allows you to specify OS-specific prerequisites.
+You must give the plugin a name corresponding to an operating system that
+would appear in C<<< $^O >>>. Any prerequisites listed will be
+conditionally added to C<<< PREREQ_PM >>> in the Makefile.PL
+
+
+=plugin Test::ChangesHasContent
+template tests tests-extra
+
+This provides a release test to ensures that your Changes file actually
+has some content since the last release.
+
+
+=plugin Test::ReportPrereqs
+tests
+
+This L<Dist::Zilla> plugin adds a t/00-report-prereqs.t test file. If
+AUTOMATED_TESTING is true, it reports the version of all modules listed in
+the distribution metadata prerequisites (including 'recommends',
+'suggests', etc.).
+
+If a MYMETA.json file exists and L<CPAN::Meta> is installed on the testing
+machine, MYMETA.json will be examined for prerequisites in addition, as it
+would include any dynamic prerequisites not set in the distribution
+metadata.

@@ -1,0 +1,12 @@
+=author OLIVER
+
+
+=plugin MetaResourcesFromGit
+git metadata version-control
+
+This plugin is a drop-in replacement for
+L<Dist::Zilla::Plugin::MetaResources> for users of Git. It I<automatically>
+provides three resource links to your distribution metadata, based on the
+name of the distribution and the remote URL of the Git repository you are
+working from.
+The default links are equivalent to:

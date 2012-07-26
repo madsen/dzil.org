@@ -1,0 +1,35 @@
+=author DOLMEN
+
+
+=plugin >shell
+command
+
+See L<Dist::Zilla::Shell>.
+
+
+=plugin ReportVersions::Tiny
+file-gatherer template
+
+This module integrates with L<Dist::Zilla> to automatically add an
+additional test to your released software. Rather than testing features of
+the software, this reports the versions of all static module dependencies,
+and of Perl, at the time the tests are run.
+
+The value of this is that when someone submits a test failure report you
+can see which versions of the modules were installed and, hopefully, be
+able to reproduce problems that are dependent on a specific set of module
+versions.
+
+
+=plugin Version::FromSubversion
+template version version-control version-provider
+
+This plugin build a version number for a release from the Subversion
+revision number of the current directory.
+
+B<Using revision numbers of the versioning system is a *really bad* idea:
+that will not scale>. For example, it will not work if you start to use
+branches and want to make releases from them because revision numbers are
+global, and not per branch. So keep this only for small projects and be
+prepared to change you version scheme if that goes wrong!
+

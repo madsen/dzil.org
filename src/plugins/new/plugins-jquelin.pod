@@ -1,0 +1,129 @@
+=author JQUELIN
+
+
+=plugin AutoPrereqs
+core prereqs
+
+This plugin will attempt to determine your distribution's
+prerequisites automatically by scanning your files using
+L<Perl::PrereqScanner>.
+
+
+=plugin CheckChangesHasContent
+before-release changelog
+
+This plugin ensures that your Changes file actually has some content
+since the last release.  If it doesn't find any, it will abort the
+release process.
+
+
+=plugin Git::Check
+before-release git version-control
+
+This plugin ensures that Git is in a clean state before releasing.
+This means you have no no untracked files or uncommitted changes in
+the working copy (execpt those you intend to commit as part of the
+release process).
+
+
+=plugin Git::Commit
+after-release changelog git version-control
+
+Once the release is done, this plugin will record this fact in Git by
+committing the changelog and F<dist.ini>.
+
+
+=plugin Git::CommitBuild
+after-release git version-control
+
+Once the build is done, this plugin will commit the results of the
+build to a branch that is completely separate from your regular code
+branches (i.e. with a different root commit).  This potentially makes
+your repository more useful to those who may not have L<Dist::Zilla>
+and all of its dependencies installed.
+
+
+=plugin Git::GatherDir
+file-gatherer git version-control
+
+This subclass of the L<GatherDir|Dist::Zilla::Plugin::GatherDir>
+plugin gathers only the files that are tracked by Git (as determined
+by S<C<git ls-files>>).  This can keep you from needing to maintain
+separate F<.gitignore> and F<MANIFEST.SKIP> files.
+
+
+=plugin Git::Init
+minting git version-control
+
+This plugin initializes a Git repository when a new distribution is
+created with S<C<dzil new>>.
+
+
+=plugin Git::NextVersion
+git version-control version-provider
+
+This provides a version number by finding the last version number from
+your Git tags and incrementing it using L<Version::Next>.
+
+
+=plugin Git::Push
+after-release git version-control
+
+Once the release is done, this plugin will push the current Git branch
+and tags to your configured remote.
+
+
+=plugin Git::Tag
+after-release before-release git version-control
+
+Once the release is done, this plugin will record this fact in Git by
+creating a tag.  It also checks before a release to ensure that tag
+doesn't already exist (which would indicate you're trying to release
+the same version twice).
+
+
+=plugin >pot
+command
+
+This command will update the messages file used for internationalization
+purposes, collecting all the new strings since last invocation.
+
+=for deprecated =plugin CompileTests
+tests
+
+=for deprecated =plugin CriticTests
+tests
+
+
+=plugin LocaleMsgfmt
+
+Put the following in your S<F<dist.ini> :>
+
+
+=plugin Prepender
+file-munger
+
+This plugin will prepend the specified lines in each Perl module or program
+within the distribution. For scripts having a shebang line, lines will be
+inserted just after it.
+This is useful to enforce a set of pragmas to your files (since pragmas are
+lexical, they will be active for the whole file), or to add some copyright
+comments, as the fsf recommends.
+
+
+=plugin Test::Compile
+file-gatherer tests
+
+This is an extension of L<Dist::Zilla::Plugin::InlineFiles>, providing the
+following files:
+
+=over 4
+
+
+=plugin Test::Perl::Critic
+file-gatherer template tests
+
+This is an extension of L<Dist::Zilla::Plugin::InlineFiles>, providing the
+following files:
+
+=over 4

@@ -1,0 +1,13 @@
+=author STRO
+
+
+=plugin GatherFromManifest
+file-gatherer manifest
+
+This is a L<FileGatherer|Dist::Zilla::Role::FileGatherer>plugin, which
+allows you to implicitly specify which files should be built into
+distibution.
+This module offers a different approach to default
+L<Dist::Zilla::Plugin::GatherDir> which adds ALL files to distribution and
+L<Dist::Zilla::Plugin::ManifestSkip> which prunes files listed in
+MANIFEST.SKIP.

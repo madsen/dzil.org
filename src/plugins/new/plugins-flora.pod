@@ -1,0 +1,41 @@
+=author FLORA
+
+
+=plugin EOLTests
+file-gatherer tests tests-extra
+
+This adds F<xt/release/eol.t> to your distribution, which is a
+standard L<Test::EOL> test.
+
+
+=plugin >weaverconf
+command
+
+This command will extract the Pod::Weaver configuration from a directory
+containing a L<Dist::Zilla> distribution.
+The results will be serialized in the requested format, and written to
+C<STDOUT>.
+
+
+=plugin DualLife
+install
+
+Dual-life modules, which are modules distributed both as part of the perl
+core and on CPAN, sometimes need a little special treatment. This module
+tries provide that for modules built with C<Dist::Zilla>.
+Currently the only thing this module does is providing an C<INSTALLDIRS>
+option to C<ExtUtils::MakeMaker>'s C<WriteMakefile> function, so dual-life
+modules will be installed in the right section of C<@INC> depending on
+different versions of perl.
+
+
+=plugin NoTabsTests
+tests
+
+This is an extension of L<Dist::Zilla::Plugin::InlineFiles>, providing the
+following files:
+
+=over 4
+
+=for deprecated =plugin SanityTests
+tests

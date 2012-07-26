@@ -1,0 +1,11 @@
+=author CHROMATIC
+
+
+=plugin ScpDeploy
+releaser
+
+This plugin can automatically deploy a release when you run C<dzil
+release>. It performs two actions for you:
+
+   * uses scp to copy the released tarball to one or more hosts
+   * uses ssh to run a deployment command on each of those hosts

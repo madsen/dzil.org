@@ -1,0 +1,12 @@
+=author DRTECH
+
+
+=plugin ModuleBuild::RequireXS
+
+Use this plugin instead of the regular C<ModuleBuild> plugin when you are
+relying on XS modules that have a pure Perl fallback, eg L<JSON>,
+L<JSON::XS> and L<JSON::PP>.
+
+It generates a F<Build.PL> which will promote XS modules from C<recommends>
+to C<requires> if there is a working C compiler. This behaviour can be
+disabled by passing a C<--pp> flag to C<Build.PL>.

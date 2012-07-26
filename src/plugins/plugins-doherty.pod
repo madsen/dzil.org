@@ -1,0 +1,128 @@
+=author DOHERTY
+
+
+=plugin >cover
+command
+
+This is a command plugin for L<Dist::Zilla>. It provides the C<cover>
+command, which generates code coverage metrics for your distribution using
+L<Devel::Cover>.
+
+If there were any test errors, the C<cover> command won't be run. Author
+and release tests are not run since they should not be counted against code
+coverage. Any additional command-line arguments are passed to the C<cover>
+command.
+
+=for deprecated =plugin @TestingMania
+bundle
+
+=for deprecated =plugin CheckChangesTests
+tests
+
+=for deprecated =plugin DistManifestTests
+manifest tests
+
+
+=plugin InstallGuide
+install template
+
+This plugin adds a very simple F<INSTALL> file to the distribution, telling
+the user how to install this distribution.
+You should use this plugin in your L<Dist::Zilla> configuration after
+C<[MakeMaker]> or C<[ModuleBuild]> so that it can determine what kind of
+distribution you are building and which installation instructions are
+appropriate.
+
+
+=plugin InstallRelease
+after-release
+
+After doing C<dzil release>, this plugin will install your dist so you are
+always the first person to have the latest and greatest version. It's like
+getting first post, only useful.
+To use it, add the following in F<dist.ini>:
+
+
+=plugin MinimumVersionTests
+tests version
+
+Release tests for minimum required versions
+
+=for deprecated =plugin PortabilityTests
+tests
+
+
+=plugin SynopsisTests
+tests
+
+Release tests for synopses
+
+
+=plugin Test::CPAN::Changes
+file-munger tests tests-extra
+
+This provides a standard L<Test::CPAN::Changes> release test.
+
+
+=plugin Test::CPAN::Meta::JSON
+file-pruner metadata tests tests-extra
+
+This provides a standard L<Test::CPAN::Meta::JSON> release test.
+
+
+=plugin Test::CheckChanges
+tests tests-extra
+
+This provides a standard L<Test::CheckChanges> release test.
+
+
+=plugin Test::DistManifest
+manifest tests tests-extra
+
+This provides a standard L<Test::DistManifest> release test.
+
+
+=plugin Test::MinimumVersion
+tests version tests-extra
+
+This provides a standard L<Test::MinimumVersion> release test.
+
+
+=plugin Test::Portability
+file-munger tests tests-extra
+
+This provides a standard L<Test::Portability::Files> release test.
+
+
+=plugin Test::Synopsis
+tests tests-extra
+
+This provides a standard L<Test::Synopsis> release test.
+
+
+=plugin Test::UnusedVars
+tests tests-extra
+
+This provides a standard L<Test::Vars> release test.
+
+
+=plugin Twitter
+after-release template
+
+This plugin will use L<Net::Twitter> to send a release notice to Twitter.
+By default, it will include a link to release on L<http://metacpan.org>.
+
+=for deprecated =plugin UnusedVarsTests
+tests
+
+
+=plugin UploadToGoogleCode
+before-release releaser
+
+This plugin looks for the Google Code project name in F<dist.ini>, and gets
+your Google Code credentials from F<~/.googlecode-identity> (which can be
+GnuPG-encrypted; see L<Config::Identity>).
+
+If any configuration is missing, it will prompt you to enter your username
+and password during the BeforeRelease phase. Entering a blank username or
+password will abort the release.
