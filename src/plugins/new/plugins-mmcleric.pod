@@ -1,0 +1,27 @@
+=author MMCLERIC
+
+=plugin >debc
+command
+
+This command runs 'debc' command on sources built with 'dzil debuild'.
+
+=plugin >debi
+command
+
+This command runs 'sudo debi' command on sources built with 'dzil debuild'.
+
+=plugin >debrelease
+command
+
+This command runs 'debrelease' command on sources built with 'dzil
+debuild'.
+
+=plugin >debuild
+command
+
+This command builds sources using dzil and runs debuild on them.
+
+=plugin Deb::VersionFromChangelog
+changelog version
+
+Dist::Zilla::Plugin::Deb::VersionFromChangelog

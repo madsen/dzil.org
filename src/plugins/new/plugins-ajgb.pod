@@ -1,0 +1,7 @@
+=author AJGB
+
+=plugin AutoMetaResources
+metadata
+
+If you find repeating the dist name again in the configuration really
+annoying, this plugin comes to the rescue!

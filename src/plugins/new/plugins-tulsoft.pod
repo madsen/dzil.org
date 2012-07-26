@@ -1,0 +1,19 @@
+=author TULSOFT
+
+=plugin CheckEmacsChangeLog
+changelog
+
+It is a simple extension of L<Dist::Zilla::Plugin::CheckChangeLog> allowing
+to check that a sentence about a new version was added to a file
+C<ChangeLog> in your project. It differs from the
+L<Dist::Zilla::Plugin::CheckChangeLog> by expecting the format of the
+C<ChangeLog> file being the one used by the Emacs's ChangeLog mode. Which
+means, for example, this one:
+
+=plugin Pod2Html
+documentation install
+
+This plugin generates HTML pages from the POD files and puts them into the
+distribution in a separate directory (not as a tree of files but flatten).
+The created HTML pages have the same (or, at least, similar) style as the
+modules' documentation shown at CPAN.

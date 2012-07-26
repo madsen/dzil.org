@@ -1,0 +1,6 @@
+=author GBARR
+
+=plugin Signature
+file-gatherer
+
+This plugin will sign a distribution using Module::Signature.

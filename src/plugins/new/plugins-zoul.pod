@@ -1,0 +1,6 @@
+=author ZOUL
+
+=plugin Rsync
+releaser
+
+The C<where> config key is required. The C<options> default to C<-e ssh>.

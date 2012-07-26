@@ -1,0 +1,11 @@
+=author RCAPUTO
+
+=plugin ChangelogFromGit
+changelog file-gatherer git version-control
+
+This Dist::Zilla plugin turns a project's git commit log into a change log
+file. It's better than simply running `git log > CHANGES` in at least two
+ways. First, it understands release tags, and it uses them to group changes
+by release. Second, it reformats the changes to make them easier to read.
+And third, subclasses can change some or all of the reformatting to make
+change logs even easier to read.

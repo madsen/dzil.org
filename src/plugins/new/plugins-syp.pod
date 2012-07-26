@@ -1,0 +1,7 @@
+=author SYP
+
+=plugin MojibakeTests
+tests
+
+This is an extension of L<Dist::Zilla::Plugin::InlineFiles>, providing the
+following file:

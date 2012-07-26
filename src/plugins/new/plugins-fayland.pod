@@ -1,0 +1,27 @@
+=author FAYLAND
+
+=plugin Repository
+metadata git version-control
+
+This plugin attempts to determine your repository URL automatically
+from your svn/svk/Git working dir.
+
+=plugin >perltidy
+command
+
+Perltidy your dist
+
+=plugin CheckChangeLog
+changelog install
+
+The code is mostly a copy-paste of L<ShipIt::Step::CheckChangeLog>
+
+=plugin PerlTidy
+file-munger
+
+PerlTidy in Dist::Zilla
+
+=plugin ReadmeFromPod
+documentation install
+
+Generate the README from C<main_module> (or specified) by L<Pod::Text>

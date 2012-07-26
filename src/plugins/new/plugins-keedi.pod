@@ -1,0 +1,33 @@
+=author KEEDI
+
+=plugin @GitFlow
+bundle git version-control
+
+This is a plugin bundle to load git-flow and git plugins. It is equivalent
+to:
+
+=plugin GitFlow
+git version-control
+
+This set of plugins for L<Dist::Zilla> can do interesting things for module
+authors using L<git|http://git- scm.com> to track their work. The following
+plugins are provided in this distribution:
+
+=plugin GitFlow::Init
+git version-control
+
+This plugin initializes a git repository and git-flow setting when a new
+distribution is created with C<dzil new>.
+
+=plugin GitFlow::NextRelease
+git version-control
+
+This plugin is almost same as L<Dist::Zilla::Plugin::NextRelease> except
+when execute C<dzil build> on release tagged reference.
+
+=plugin GitFlow::NextVersion
+git version version-control version-provider
+
+This does the L<Dist::Zilla::Role::VersionProvider> role. It finds the last
+version number from your git tags, increments it using L<Version::Next>,
+and uses the result as the C<version> parameter for your distribution.

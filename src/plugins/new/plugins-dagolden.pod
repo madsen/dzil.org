@@ -1,0 +1,75 @@
+=author DAGOLDEN
+
+=plugin CheckExtraTests
+before-release tests tests-extra
+
+This plugin ensures that the tests in the F<xt/> directory pass before
+allowing a release.  It is a complement to the C<xtest> command and an
+alternative to the L<ExtraTests|Dist::Zilla::Plugin::ExtraTests> and
+L<RunExtraTests|Dist::Zilla::Plugin::RunExtraTests> plugins.  (You
+should probably use RunExtraTests instead.)
+
+=plugin RunExtraTests
+tests tests-extra
+
+This plugin runs the tests in the F<xt/> directory when you do
+S<C<dzil test>> or use the
+L<TestRelease|Dist::Zilla::Plugin::TestRelease> plugin.  It's more
+efficient than L<CheckExtraTests|Dist::Zilla::Plugin::CheckExtraTests>
+because it integrates more tightly with MakeMaker (and ModuleBuild),
+allowing dzil to build the dist once and then run both the normal
+tests and the extra tests.
+
+=plugin >xtest
+command
+
+Run xt tests for your dist
+
+=plugin AppendExternalData
+file-munger file-pruner
+
+This L<Dist::Zilla> plugin appends files in a directory to files being
+gathered for the distribution.
+
+=plugin BumpVersionFromGit
+git version version-control version-provider
+
+B<NOTE> This distribution is B<deprecated>. The module has been reborn as
+L<Dist::Zilla::Plugin::Git::NextVersion> and included in the
+L<Dist::Zilla::Plugin::Git> distribution.
+
+=plugin Doppelgaenger
+after-release file-gatherer file-munger template
+
+This L<Dist::Zilla> plugin creates a new CPAN distribution with a new name
+based on the latest stable distribution of a source module.
+
+=plugin InsertCopyright
+file-munger
+
+This module replaces a special C<# COPYRIGHT> comment in your Perl source
+files with a short notice appropriate to your declared copyright. The
+special comment B<must> be placed before C<__END__>. Only the first such
+comment will be replaced.
+
+=plugin OSPrereqs
+install metadata
+
+This L<Dist::Zilla> plugin allows you to specify OS-specific prerequisites.
+You must give the plugin a name corresponding to an operating system that
+would appear in C<<< $^O >>>. Any prerequisites listed will be
+conditionally added to C<<< PREREQ_PM >>> in the Makefile.PL
+
+=plugin Test::ChangesHasContent
+template tests
+
+This is an extension of L<Dist::Zilla::Plugin::InlineFiles>, providing the
+following file:
+
+=plugin Test::ReportPrereqs
+tests
+
+This L<Dist::Zilla> plugin adds a t/00-report-prereqs.t test file. If
+AUTOMATED_TESTING is true, it reports the version of all modules listed in
+the distribution metadata prerequisites (including 'recommends',
+'suggests', etc.).

@@ -1,0 +1,36 @@
+=author DRBEAN
+
+=plugin SVK
+version-control
+
+This set of plugins for L<Dist::Zilla> can do interesting things for module
+authors using L<svk|http://svk.bestpractical.com> to track their work. The
+following plugins are provided in this distribution:
+
+=plugin SVK::Check
+before-release version-control
+
+This plugin checks that svk is in a clean state before releasing. The
+following checks are performed before releasing:
+
+=plugin SVK::Commit
+after-release version-control
+
+Once the release is done, this plugin will record this fact in svk by
+committing changelog and F<dist.ini>. The commit message will be taken from
+the changelog for this release. It will include lines between the current
+version and timestamp and the next non-indented line.
+
+=plugin SVK::Push
+after-release version-control
+
+Once the release is done, this plugin will push current svk branch to
+remote that it was copied from, but the associated tags need the mirror
+name.
+
+=plugin SVK::Tag
+after-release before-release version-control
+
+Once the release is done, this plugin will record this fact by creating a
+tag of the present branch. You can set the C<tag_message> attribute to
+change the message.

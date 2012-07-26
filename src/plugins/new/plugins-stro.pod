@@ -1,0 +1,8 @@
+=author STRO
+
+=plugin GatherFromManifest
+file-gatherer manifest
+
+This is a L<FileGatherer|Dist::Zilla::Role::FileGatherer>plugin, which
+allows you to implicitly specify which files should be built into
+distibution.

@@ -1,0 +1,38 @@
+=author RSRCHBOY
+
+=plugin Git::CheckFor::CorrectBranch
+before-release git version-control
+
+This plugin checks that you are on the correct branch before allowing
+a release.  It prevents accidental releases being cut from topic
+branches.
+
+=plugin Git::CheckFor::Fixups
+before-release git version-control
+
+This plugin checks that you have no fixup or squash commits remaining
+in your history since the last release.  The presence of these commits
+is almost certainly an oversight, so if any are found the release is
+aborted.
+
+=plugin @Git::CheckFor
+bundle git version-control
+
+This bundles several plugins that do some sanity/lint checking of your git
+repository; namely: you're on the right branch and you haven't forgotten
+any autosquash commits (C<fixup!> or C<squash!>).
+
+=plugin NoSmartCommentsTests
+tests
+
+This is an extension of L<Dist::Zilla::Plugin::InlineFiles>, providing the
+following file:
+
+=plugin RemovePrereqsMatching
+prereqs
+
+This plugin builds on L<Dist::Zilla::Plugin::RemovePrereqs> to allow
+prerequisites to be removed by regular expression, rather than string
+equality. This can be useful when you have a C<DPAN> package consisting of
+a bunch of modules under a common namespace, whose installation can be
+handled by one common prerequisite specification.

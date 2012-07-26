@@ -1,0 +1,9 @@
+=author MDORMAN
+
+=plugin >interact
+command
+
+This is a command plugin for L<Dist::Zilla>. It provides the C<interact>
+command, which leverages the capabilities of L<Module::Build::Service> to
+bootstrap an environment for your application which you can use to interact
+with it.

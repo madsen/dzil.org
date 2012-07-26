@@ -1,0 +1,7 @@
+=author REID
+
+=plugin VersionFromScript
+template version version-provider
+
+This plugin performs the Dist::Zilla::Role::VersionProvider role. It runs a
+user-provided shell script and uses the output as Dist::Zilla's version.

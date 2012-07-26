@@ -1,0 +1,7 @@
+=author DRTECH
+
+=plugin ModuleBuild::RequireXS
+
+Use this plugin instead of the regular C<ModuleBuild> plugin when you are
+relying on XS modules that have a pure Perl fallback, eg L<JSON>,
+L<JSON::XS> and L<JSON::PP>.

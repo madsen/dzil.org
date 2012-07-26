@@ -1,0 +1,48 @@
+=author ALEXBIO
+
+=plugin >gh
+command
+
+Use the GitHub plugins from the command-line
+
+=plugin @GitHub
+bundle git version-control
+
+This bundle automatically adds all the GitHub plugins.
+
+=plugin Clean
+after-release
+
+Ultra simple L<Dist::Zilla> plugin that cleans the working directory after
+the release.
+
+=plugin GitHub
+git version-control
+
+B<Dist::Zilla::Plugin::GitHub> ships a bunch of L<Dist::Zilla> plugins,
+aimed at easing the maintainance of Dist::Zilla-managed modules with
+L<GitHub|https://github.com>.
+
+=plugin GitHub::Create
+git version-control
+
+This Dist::Zilla plugin creates a new git repository on GitHub.com when a
+new distribution is created with C<dzil new>.
+
+=plugin GitHub::Meta
+git metadata version-control
+
+This Dist::Zilla plugin adds some information about the distribution's
+GitHub repository to the META.{yml,json} files, using the official
+L<CPAN::Meta> specification.
+
+=plugin GitHub::Update
+git releaser version-control
+
+This Dist::Zilla plugin updates the information of the GitHub repository
+when C<dzil release> is run.
+
+=plugin Test::CheckManifest
+manifest tests
+
+This Dist::Zilla plugin provides the following file:

@@ -1,0 +1,78 @@
+=author RWSTAUNER
+
+=plugin @ConfigSlicer
+bundle
+
+This plugin bundle actually wraps and modifies another plugin bundle. It
+extends L<< C<@Filter>|Dist::Zilla::PluginBundle::Filter >> and
+additionally consumes
+L<Dist::Zilla::Role::PluginBundle::Config::Slicer|Dist::Zilla::Role::Plugin
+Bundle::Config::Slicer> so that any plugin options will be passed in.
+
+=plugin CPANChangesTests
+tests
+
+This is an extension of L<Dist::Zilla::Plugin::InlineFiles>, providing the
+following files:
+
+=plugin Git::DescribeVersion
+git version version-control version-provider
+
+This performs the L<Dist::Zilla::Role::VersionProvider> role. It uses
+L<Git::DescribeVersion> to count the number of commits since the last tag
+(matching I<match_pattern>) or since the initial commit, and uses the
+result as the I<version> parameter for your distribution.
+
+=plugin PodLinkTests
+documentation tests
+
+See L</SYNOPSIS>.
+
+=plugin Run
+
+Run arbitrary commands at various L<Dist::Zilla> phases.
+
+=plugin Run::AfterBuild
+
+This plugin executes the specified command after building the dist.
+
+=plugin Run::AfterRelease
+after-release
+
+This plugin executes the specified command after releasing.
+
+=plugin Run::BeforeBuild
+
+This plugin executes the specified command before building the dist.
+
+=plugin Run::BeforeRelease
+before-release
+
+This plugin executes the specified command before releasing.
+
+=plugin Run::Release
+releaser
+
+This plugin executes the specified command for the release process.
+
+=plugin Run::Role::Runner
+
+This is the base role for all the plugins L<Dist::Zilla::Plugin::Run>
+delivers. You don't need this.
+
+=plugin Run::Test
+tests
+
+This plugin executes the specified command during the test phase.
+
+=plugin Test::Pod::LinkCheck
+documentation tests
+
+This is an extension of L<Dist::Zilla::Plugin::InlineFiles> providing the
+following files:
+
+=plugin Test::Pod::No404s
+documentation tests
+
+This is an extension of L<Dist::Zilla::Plugin::InlineFiles> providing the
+following files:

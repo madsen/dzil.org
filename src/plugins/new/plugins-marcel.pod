@@ -1,0 +1,35 @@
+=author MARCEL
+
+=plugin Bugtracker
+metadata
+
+This plugin sets the distribution's bugtracker URL and possibly the email
+address as metadata.
+
+=plugin FatPacker
+file-munger
+
+This plugin uses L<App::FatPacker> to pack your dependencies onto your
+script file.
+
+=plugin FindDirByRegex
+file-finder
+
+This plugin finds files in a directory and skips them if they match a
+regular expression.
+
+=plugin HasVersionTests
+tests version
+
+This is an extension of L<Dist::Zilla::Plugin::InlineFiles>, providing the
+following file:
+
+=plugin Homepage
+metadata
+
+This plugin sets the distribution's homepage URL as metadata.
+
+=plugin ReportVersions
+
+This is an extension of L<Dist::Zilla::Plugin::InlineFiles>, providing the
+following file:

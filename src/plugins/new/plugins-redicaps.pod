@@ -1,0 +1,51 @@
+=author REDICAPS
+
+=plugin >mozi
+command
+
+This command install your built addon to firefox profile. It will create a
+proxy file to your built addon directroy if you set --test in the command
+line, check
+L<https://developer.mozilla.org/en/Setting_up_extension_development_environ
+ment#Firefox_extension_proxy_file> about the description of proxy file.
+Your should set the firefox extension directory in the dist.ini [Moz]
+section or set it with '--dir'.
+
+=plugin CopyTo
+
+ Copy to other places plugin for Dist::Zilla
+
+=plugin Moz
+file-gatherer
+
+Dist::Zilla::Plugin::Moz is created for firefox addons developement. It can
+do those work for you.
+
+=plugin Moz::Archive
+
+Pack your dist into a firefox '.xpi' file when you use 'dzil build'
+
+=plugin Moz::Install
+
+This is where you can set where you want to install your distribution when
+you use 'dzil install'
+
+=plugin Moz::InstallRDF
+file-gatherer
+
+Set extra information for your install.rdf. You should set the optionsURL
+and iconURL without the "chrome://addonsName' part
+
+=plugin Moz::InstallRDF::Template
+
+
+
+=plugin Moz::Manifest
+file-gatherer manifest
+
+Set overylay and style for you chrome.manifest
+
+=plugin Moz::Minter
+file-pruner
+
+This is the minter for Dist::Zilla::Plugin::Moz

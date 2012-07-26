@@ -1,0 +1,44 @@
+=author MJGARDNER
+
+=plugin RequiresExternal
+file-gatherer metadata template
+
+This L<Dist::Zilla|Dist::Zilla> plugin creates a test in your distribution
+to check for the existence of executable commands you require.
+
+=plugin Subversion
+version-control
+
+This set of plugins for L<Dist::Zilla> can do interesting things for module
+authors using L<Subversion|http://subversion.apache.org/> to track their
+work. The following plugins are provided in this distribution:
+
+=plugin Subversion::ReleaseDist
+releaser version-control
+
+This L<Dist::Zilla|Dist::Zilla> release plugin can be used to copy your
+distribution's tarball to a directory in Subversion. In addition to the
+attributes listed here, it can be configured with attributes from
+L<Dist::Zilla::Role::Subversion|Dist::Zilla::Role::Subversion>.
+
+=plugin Subversion::Tag
+after-release version-control
+
+This L<Dist::Zilla|Dist::Zilla> after-release plugin can be used to tag
+your distribution in Subversion. In addition to the attributes listed here,
+it can be configured with attributes from
+L<Dist::Zilla::Role::Subversion|Dist::Zilla::Role::Subversion>.
+
+=plugin UploadToSFTP
+releaser
+
+ ; in dzil.ini [UploadToSFTP] site = sftp.geocities.invalid directory =
+/Heartland/Meadows/3044 debug = 0 # in $HOME/.netrc machine
+sftp.geocities.invalid login mjgardner password drowssap
+
+=plugin WSDL
+
+This L<Dist::Zilla|Dist::Zilla> plugin will create classes in your
+distribution for interacting with a web service based on that service's
+published WSDL file. It uses L<SOAP::WSDL|SOAP::WSDL> and can optionally
+add both a class prefix and a typemap.

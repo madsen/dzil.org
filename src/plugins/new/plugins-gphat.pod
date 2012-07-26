@@ -1,0 +1,21 @@
+=author GPHAT
+
+=plugin ChangelogFromGit::Debian
+changelog git version-control
+
+Dist::Zilla::Plugin::ChangelogFromGit::Debian extends
+L<Dist::Zilla::Plugin::ChangelogFromGit> to create changelogs acceptable
+for Debian packages.
+
+=plugin Dpkg
+install
+
+Dist::Zilla::Plugin::Dpkg generates Debian' controls files that you can use
+with debhelper to generate packages of your perl module.
+
+=plugin Version::Git::Flowish
+git template version version-control version-provider
+
+This plugin consumes the Dist::Zilla VersionProvider role and gleans a
+version number from Git using a structure similar to Vincent Driessen's
+L<git flow|http://nvie.com/posts/a-successful-git-branching-model/> model.

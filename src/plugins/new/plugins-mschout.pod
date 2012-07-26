@@ -1,0 +1,10 @@
+=author MSCHOUT
+
+=plugin ApacheTest
+install prereqs template tests
+
+This plugin will produce an L<ExtUtils::MakeMaker>-powered F<Makefile.PL>
+with Apache::Test hooks for the distribution. If loaded, the
+L<Manifest|Dist::Zilla::Plugin::Manifest> plugin should also be loaded, and
+the L<MakeMaker|Dist::Zilla::Plugin::MakeMaker> plugin should not be
+loaded.

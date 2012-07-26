@@ -1,0 +1,7 @@
+=author LESPEA
+
+=plugin SpellingCommonMistakesTests
+tests
+
+This is an extension of Dist::Zilla::Plugin::InlineFiles, providing the
+following file:

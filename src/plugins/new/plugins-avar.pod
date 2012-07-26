@@ -1,0 +1,9 @@
+=author AVAR
+
+=plugin MakeMaker::Awesome
+install prereqs template
+
+L<Dist::Zilla>'s L<MakeMaker|Dist::Zilla::Plugin::MakeMaker> plugin is
+limited, if you want to stray from the marked path and do something that
+would normally be done in a C<package MY> section or otherwise run custom
+code in your F<Makefile.PL> you're out of luck.

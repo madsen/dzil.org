@@ -1,0 +1,10 @@
+=author MITHALDU
+
+=plugin ProgCriticTests
+template tests
+
+Please see Test::Perl::Critic::Progressive on what exactly it does. For you
+it's only important to know that by using this plugin you can avoid the
+creep of bad coding practices into your distribution and slowly remove
+those that have made their way in already, without being forced to fix
+everything at once.

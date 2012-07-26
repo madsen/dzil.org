@@ -1,0 +1,33 @@
+=author THALJEF
+
+=plugin >cook
+command
+
+This L<Dist::Zilla> command "cooks" your distribution from scratch. It
+builds, tests, and installs, your distribution and all of its dependencies
+in a sandbox using L<cpanm> and L<local::lib>. The dependencies are pulled
+from the local L<Pinto> repository in the f<pan> directory, and the
+resulting build is placed in the F<dlib> directory.
+
+=plugin >scrub
+command
+
+This L<Dist::Zilla> command "scrubs" your work space to a clean state by
+removing any dependencies that have been installed F<dlib> directory, thus
+forcing the next cooking to be done from scratch.
+
+=plugin >stock
+command
+
+This L<Dist::Zilla> command "stocks" the "pantry" with all the ingredients
+for your distribution. More specifically, the C<stock> command extracts the
+dependencies from your distribution and uses L<Pinto> to import all of them
+into a local CPAN-like repository in the F<pan> directory. As your
+distribution evolves and accumulates more dependencies, you can run the
+C<stock> command again to "stock" the additional ingredients.
+
+=plugin Pinto::Add
+releaser
+
+C<Dist::Zilla::Plugin::Pinto::Add> is a release-stage plugin that will add
+your distribution to a local or remote L<Pinto> repository.

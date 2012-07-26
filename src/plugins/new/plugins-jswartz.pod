@@ -1,0 +1,7 @@
+=author JSWARTZ
+
+=plugin PodWeaverIfPod
+documentation
+
+Dist::Zilla::Plugin::PodWeaverIfPod will only PodWeaver a .pm if there
+appears to be Pod there (i.e. a C<=head1> section).

@@ -1,0 +1,21 @@
+=author RHOELZ
+
+=plugin Git::ExcludeUntracked
+file-pruner git version-control
+
+This L<Dist::Zilla> plugin automatically excludes any files from your
+distribution that are not currently tracked by Git.
+
+=plugin LocalBrew
+
+DEPRECATED - Use Test::LocalBrew instead
+
+=plugin Test::LocalBrew
+file-gatherer template tests
+
+This plugin adds a release test for your module that tests it against a set
+of given perlbrew environments. Any dependencies are installed via
+cpanminus into a temporary local lib, so your perlbrew environments aren't
+altered. This comes in handy when you want to build against a set of
+"fresh" Perl installations (ie. those with only core modules) to make sure
+all of your prerequisites are included correctly.

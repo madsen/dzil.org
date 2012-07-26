@@ -1,0 +1,6 @@
+=author XSAWYERX
+
+=plugin EmailNotify
+releaser
+
+This plugin allows to send an email when releasing.
